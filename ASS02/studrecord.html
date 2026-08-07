@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Record</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background-color: #f2f2f2;
+            text-align: center;
+        }
+
+        .container{
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input{
+            width: 90%;
+            padding: 8px;
+            margin: 5px;
+        }
+
+        button{
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        table{
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+        }
+
+        table, th, td{
+            border:1px solid black;
+        }
+
+        th, td{
+            padding:10px;
+            text-align:center;
+        }
+
+        h2{
+            color:green;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Student Record</h1>
+
+<input type="text" id="name" placeholder="Enter Name"><br>
+
+<input type="number" id="sub1" placeholder="Subject 1 Marks"><br>
+
+<input type="number" id="sub2" placeholder="Subject 2 Marks"><br>
+
+<input type="number" id="sub3" placeholder="Subject 3 Marks"><br>
+
+<button onclick="addStudent()">Add Record</button>
+
+</div>
+
+<table id="studentTable">
+
+<tr>
+    <th>Name</th>
+    <th>Subject 1</th>
+    <th>Subject 2</th>
+    <th>Subject 3</th>
+    <th>Total</th>
+    <th>Percentage</th>
+</tr>
+
+</table>
+
+<h2 id="topper">Topper : </h2>
+
+<script>
+
+let highestPercentage = 0;
+let topperName = "";
+
+function addStudent()
+{
+    let name = document.getElementById("name").value;
+
+    let sub1 = Number(document.getElementById("sub1").value);
+
+    let sub2 = Number(document.getElementById("sub2").value);
+
+    let sub3 = Number(document.getElementById("sub3").value);
+
+    let total = sub1 + sub2 + sub3;
+
+    let percentage = total / 3;
+
+    let table = document.getElementById("studentTable");
+
+    let row = table.insertRow();
+
+    row.insertCell(0).innerHTML = name;
+    row.insertCell(1).innerHTML = sub1;
+    row.insertCell(2).innerHTML = sub2;
+    row.insertCell(3).innerHTML = sub3;
+    row.insertCell(4).innerHTML = total;
+    row.insertCell(5).innerHTML = percentage.toFixed(2) + "%";
+
+    if(percentage > highestPercentage)
+    {
+        highestPercentage = percentage;
+        topperName = name;
+    }
+
+    document.getElementById("topper").innerHTML =
+    "Topper : " + topperName + " (" + highestPercentage.toFixed(2) + "%)";
+
+    document.getElementById("name").value = "";
+    document.getElementById("sub1").value = "";
+    document.getElementById("sub2").value = "";
+    document.getElementById("sub3").value = "";
+}
+
+</script>
+
+</body>
+</html>
