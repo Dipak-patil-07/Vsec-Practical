@@ -256,4 +256,3 @@ git pull
 git push
 git fetch
 ```
-This is for git revert 
