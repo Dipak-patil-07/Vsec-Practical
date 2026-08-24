@@ -1,0 +1,738 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0;
+
+    /* Simple modern background */
+    background:
+        radial-gradient(circle at 20% 20%, #243b55 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #302b63 0%, transparent 35%),
+        linear-gradient(135deg, #0f2027, #203a43, #0f2027);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-color: #0f2027;
+}
+
+/* MAIN */
+
+.main
+{
+    position: relative;
+}
+
+
+/* ROWS */
+
+.row1
+{
+    display: flex;
+}
+
+.row2
+{
+    display: flex;
+    margin-top: 15px;
+}
+
+.box1 {
+    width: 300px;
+    height: 300px;
+    margin-right: 20px;
+
+    background-color: #4f46e5;
+    border-radius: 25px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+    transform-origin: 100% 100%;
+}
+
+
+.box2 {
+    width: 300px;
+    height: 300px;
+
+    background-color: #10b981;
+    border-radius: 25px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+    transform-origin: 0% 100%;
+}
+
+
+.box3 {
+    width: 300px;
+    height: 300px;
+    margin-right: 20px;
+
+    background-color: #f59e0b;
+    border-radius: 25px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+    transform-origin: 100% 0%;
+}
+
+
+.box4 {
+    width: 300px;
+    height: 300px;
+
+    background-color: #ec4899;
+    border-radius: 25px;
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+
+    transform-origin: 0% 0%;
+}
+/* HELLO */
+
+.center span {
+    color: white;
+
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease;
+}
+
+/* SHOW HELLO */
+
+.main.active .center span
+{
+    opacity: 1;
+}
+
+
+/* ========================= */
+/* ANIMATION */
+/* ========================= */
+
+.main.active .box1
+{
+    animation: box1Animation 2s ease-in-out;
+}
+
+.main.active .box2
+{
+    animation: box2Animation 2s ease-in-out;
+}
+
+.main.active .box3
+{
+    animation: box3Animation 2s ease-in-out;
+}
+
+.main.active .box4
+{
+    animation: box4Animation 2s ease-in-out;
+}
+
+
+/* TOP LEFT → LEFT */
+
+@keyframes box1Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(-320px, 20px) rotate(-90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* TOP RIGHT → RIGHT */
+
+@keyframes box2Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(320px, 20px) rotate(90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* BOTTOM LEFT → LEFT */
+
+@keyframes box3Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(-320px, -20px) rotate(90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* BOTTOM RIGHT → RIGHT */body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0;
+
+ /* Simple modern background */
+    background:
+        radial-gradient(circle at 20% 20%, #243b55 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #302b63 0%, transparent 35%),
+        linear-gradient(135deg, #0f2027, #203a43, #0f2027);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-color: #0f2027;
+}
+
+
+/* MAIN */
+
+.main
+{
+    position: relative;
+}
+
+
+/* ROWS */
+
+.row1
+{
+    display: flex;
+}
+
+.row2
+{
+    display: flex;
+    margin-top: 20px;
+}
+
+
+/* BOX 1 */
+
+.box1
+{
+    width: 300px;
+    height: 300px;
+    margin-right: 20px;
+
+    background-color: blue;
+    border-radius: 20px;
+
+    transform-origin: 100% 100%;
+}
+
+
+/* BOX 2 */
+
+.box2
+{
+    width: 300px;
+    height: 300px;
+
+    background-color: green;
+    border-radius: 15px;
+
+    transform-origin: 0% 100%;
+}
+
+
+/* BOX 3 */
+
+.box3
+{
+    width: 300px;
+    height: 300px;
+    margin-right: 15px;
+
+    background-color: yellow;
+    border-radius: 20px;
+
+    transform-origin: 100% 0%;
+}
+
+
+/* BOX 4 */
+
+.box4
+{
+    width: 300px;
+    height: 300px;
+
+    background-color: red;
+    border-radius: 20px;
+
+    transform-origin: 0% 0%;
+}
+
+
+/* CENTER */
+
+.center
+{
+    position: absolute;
+
+    width: 150px;
+    height: 70px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+
+/* HELLO */
+
+.center span
+{
+    color: black;
+
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease;
+}
+
+
+/* SHOW HELLO */
+
+.center:hover span
+{
+    opacity: 1;
+}
+
+
+/* ========================= */
+/* HOVER ANIMATION */
+/* ========================= */
+
+.center:hover ~ .row1 .box1
+{
+    animation: box1Animation 2s ease-in-out;
+}
+
+.center:hover ~ .row1 .box2
+{
+    animation: box2Animation 2s ease-in-out;
+}
+
+.center:hover ~ .row2 .box3
+{
+    animation: box3Animation 2s ease-in-out;
+}
+
+.center:hover ~ .row2 .box4
+{
+    animation: box4Animation 2s ease-in-out;
+}
+
+
+/* TOP LEFT → LEFT */
+
+@keyframes box1Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(-320px, 20px) rotate(-90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* TOP RIGHT → RIGHT */
+
+@keyframes box2Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(320px, 20px) rotate(90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* BOTTOM LEFT → LEFT */
+
+@keyframes box3Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(-320px, -20px) rotate(90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* BOTTOM RIGHT → RIGHT */
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+    margin: 0;
+ /* Simple modern background */
+    background:
+        radial-gradient(circle at 20% 20%, #243b55 0%, transparent 35%),
+        radial-gradient(circle at 80% 80%, #302b63 0%, transparent 35%),
+        linear-gradient(135deg, #0f2027, #203a43, #0f2027);
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    background-color: #0f2027;
+}
+
+
+/* MAIN */
+
+.main
+{
+    position: relative;
+}
+
+
+/* ROWS */
+
+.row1
+{
+    display: flex;
+}
+
+.row2
+{
+    display: flex;
+    margin-top: 20px;
+}
+
+
+/* BOX 1 */
+
+.box1
+{
+    width: 300px;
+    height: 300px;
+    margin-right: 20px;
+
+    background-color: blue;
+    border-radius: 50px;
+
+    transform-origin: 100% 100%;
+}
+
+
+/* BOX 2 */
+
+.box2
+{
+    width: 300px;
+    height: 300px;
+
+    background-color: green;
+    border-radius: 50px;
+
+    transform-origin: 0% 100%;
+}
+
+
+/* BOX 3 */
+
+.box3
+{
+    width: 300px;
+    height: 300px;
+    margin-right: 20px;
+
+    background-color: yellow;
+    border-radius: 50px;
+
+    transform-origin: 100% 0%;
+}
+
+
+/* BOX 4 */
+
+.box4
+{
+    width: 300px;
+    height: 300px;
+
+    background-color: red;
+    border-radius: 50px;
+
+    transform-origin: 0% 0%;
+}
+
+
+/* CENTER */
+
+.center
+{
+    position: absolute;
+
+    width: 150px;
+    height: 70px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    z-index: 100;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+
+/* HELLO */
+
+.center span
+{
+    color: black;
+
+    font-size: 30px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+
+    opacity: 0;
+
+    transition: opacity 0.2s ease;
+}
+
+
+/* SHOW HELLO */
+
+.center:hover span
+{
+    opacity: 1;
+}
+
+
+/* ========================= */
+/* HOVER ANIMATION */
+/* ========================= */
+
+.center:hover ~ .row1 .box1
+{
+    animation: box1Animation 2s ease-in-out;
+}
+
+.center:hover ~ .row1 .box2
+{
+    animation: box2Animation 2s ease-in-out;
+}
+
+.center:hover ~ .row2 .box3
+{
+    animation: box3Animation 2s ease-in-out;
+}
+
+.center:hover ~ .row2 .box4
+{
+    animation: box4Animation 2s ease-in-out;
+}
+
+
+/* TOP LEFT → LEFT */
+
+@keyframes box1Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(-320px, 20px) rotate(-90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* TOP RIGHT → RIGHT */
+
+@keyframes box2Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(320px, 20px) rotate(90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* BOTTOM LEFT → LEFT */
+
+@keyframes box3Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(-320px, -20px) rotate(90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+/* BOTTOM RIGHT → RIGHT */
+
+@keyframes box4Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(320px, -20px) rotate(-90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+@keyframes box4Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(320px, -20px) rotate(-90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
+
+
+@keyframes box4Animation
+{
+    0%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    50%
+    {
+        transform: translate(320px, -20px) rotate(-90deg);
+    }
+
+    100%
+    {
+        transform: translate(0, 0) rotate(0deg);
+    }
+}
