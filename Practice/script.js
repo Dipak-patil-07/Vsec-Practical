@@ -36,55 +36,105 @@ let users = [
   },
 ];
 
+
+// =========================
+// SHOW USERS
+// =========================
+
 function showUsers(arr) {
+
+  const cardsContainer = document.querySelector(".cards");
+
   arr.forEach(function (user) {
-    // Create outer card div
+
+    // Create card
     const card = document.createElement("div");
     card.classList.add("card");
 
+
     // Create image
     const img = document.createElement("img");
+
     img.src = user.pic;
+    img.alt = user.name;
+
     img.classList.add("bg-img");
 
-    // Create blurred-layer div
+
+    // Create blurred layer
     const blurredLayer = document.createElement("div");
+
     blurredLayer.style.backgroundImage = `url(${user.pic})`;
+
     blurredLayer.classList.add("blurred-layer");
 
-    // Create content div
+
+    // Create content
     const content = document.createElement("div");
+
     content.classList.add("content");
 
-    // Create h3 and paragraph
+
+    // Create heading
     const heading = document.createElement("h3");
+
     heading.textContent = user.name;
 
+
+    // Create bio
     const para = document.createElement("p");
+
     para.textContent = user.bio;
 
-    // Append heading and paragraph to content
+
+    // Add heading and bio
     content.appendChild(heading);
     content.appendChild(para);
 
-    // Append all to card
+
+    // Add everything to card
     card.appendChild(img);
     card.appendChild(blurredLayer);
     card.appendChild(content);
 
-    // Finally, append card to the body or any container
-    document.querySelector(".cards").appendChild(card);
+
+    // Add card to container
+    cardsContainer.appendChild(card);
   });
 }
 
+
+// =========================
+// DISPLAY ALL USERS
+// =========================
+
 showUsers(users);
 
-let inp = document.querySelector(".inp");
+
+// =========================
+// SEARCH
+// =========================
+
+const inp = document.querySelector(".inp");
+
 inp.addEventListener("input", function () {
-  let newUsers = users.filter((user) => {
-    return user.name.startsWith(inp.value);
+
+  const searchValue = inp.value.toLowerCase().trim();
+
+  const newUsers = users.filter(function (user) {
+
+    return user.name
+      .toLowerCase()
+      .startsWith(searchValue);
+
   });
 
+
+  // Clear old cards
   document.querySelector(".cards").innerHTML = "";
+
+
+  // Display filtered users
   showUsers(newUsers);
+
 });
