@@ -1,0 +1,23 @@
+{
+  "name": "employee-management-api",
+  "version": "1.0.0",
+  "description": "Employee CRUD API using Express and MongoDB",
+  "main": "Api.js",
+  "scripts": {
+    "start": "node Api.js",
+    "dev": "node Api.js"
+  },
+  "keywords": [
+    "express",
+    "mongodb",
+    "crud",
+    "api"
+  ],
+  "author": "Dipak",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongodb": "^6.20.0"
+  }
+}
