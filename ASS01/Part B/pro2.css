@@ -33,23 +33,21 @@ body {
 .box1 {
     margin-right: 20px;
     background: blue;
-    transform-origin: 100% 100%;
+   
 }
 
 .box2 {
     background: green;
-    transform-origin: 0% 100%;
+  
 }
 
 .box3 {
     margin-right: 20px;
     background: yellow;
-    transform-origin: 100% 0%;
 }
 
 .box4 {
     background: red;
-    transform-origin: 0% 0%;
 }
 
 .center {
