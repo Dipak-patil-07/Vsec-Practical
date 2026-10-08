@@ -1,177 +1,68 @@
 const express = require("express");
-const { MongoClient, ObjectId } = require("mongodb");
+const { MongoClient } = require("mongodb");
 
 const app = express();
 
 app.use(express.json());
 
-const mongoUrl = "mongodb://127.0.0.1:27017";
+const url = "mongodb://localhost:27017";
 
-const client = new MongoClient(mongoUrl);
+const client = new MongoClient(url);
 
-let employeeCollection;
+let students;
 
-async function startServer() {
+async function connectDB() {
+    await client.connect();
 
-    try {
+    console.log("MongoDB connected");
 
-        await client.connect();
+    const db = client.db("college");
 
-        console.log("Connected to MongoDB");
-
-        const database = client.db("companyDB");
-
-        employeeCollection = database.collection("employees");
-
-        app.listen(3000, () => {
-            console.log("Server running on port 3000");
-        });
-
-    } catch (err) {
-
-        console.log("MongoDB connection failed");
-    }
+    students = db.collection("students");
 }
 
+connectDB();
 
-// CREATE
-app.post("/employees", async (req, res) => {
+app.get("/students", async (req, res) => {
 
-    try {
+    const data = await students.find().toArray();
 
-        const employee = req.body;
-
-        const result = await employeeCollection.insertOne(employee);
-
-        res.status(201).json({
-            message: "Employee created",
-            employeeId: result.insertedId
-        });
-
-    } catch (err) {
-
-        res.status(500).json({
-            error: "Unable to add employee"
-        });
-    }
+    res.send(data);
 });
 
+app.post("/students", async (req, res) => {
 
-// READ ALL
-app.get("/employees", async (req, res) => {
+    await students.insertOne(req.body);
 
-    try {
-
-        const employees = await employeeCollection
-            .find({})
-            .toArray();
-
-        res.json(employees);
-
-    } catch (err) {
-
-        res.status(500).json({
-            error: "Unable to fetch employees"
-        });
-    }
+    res.send("Student added successfully");
 });
 
+app.put("/students/:id", async (req, res) => {
 
-// READ ONE
-app.get("/employees/:id", async (req, res) => {
+    const id = req.params.id;
 
-    try {
-
-        const employeeId = new ObjectId(req.params.id);
-
-        const employee = await employeeCollection.findOne({
-            _id: employeeId
-        });
-
-        if (employee === null) {
-            return res.status(404).json({
-                message: "Employee does not exist"
-            });
-        }
-
-        res.json(employee);
-
-    } catch (err) {
-
-        res.status(400).json({
-            message: "Invalid employee ID"
-        });
-    }
-});
-
-
-// UPDATE
-app.put("/employees/:id", async (req, res) => {
-
-    try {
-
-        const employeeId = new ObjectId(req.params.id);
-
-        const updatedData = {
+    await students.updateOne(
+        { id: id },
+        {
             $set: {
                 name: req.body.name,
-                age: req.body.age,
-                salary: req.body.salary
+                marks: req.body.marks
             }
-        };
-
-        const result = await employeeCollection.updateOne(
-            { _id: employeeId },
-            updatedData
-        );
-
-        if (result.matchedCount === 0) {
-            return res.status(404).json({
-                message: "Employee not found"
-            });
         }
+    );
 
-        res.json({
-            message: "Employee information updated"
-        });
-
-    } catch (err) {
-
-        res.status(400).json({
-            message: "Invalid employee ID"
-        });
-    }
+    res.send("Student updated successfully");
 });
 
+app.delete("/students/:id", async (req, res) => {
 
-// DELETE
-app.delete("/employees/:id", async (req, res) => {
+    const id = req.params.id;
 
-    try {
+    await students.deleteOne({ id: id });
 
-        const employeeId = new ObjectId(req.params.id);
-
-        const result = await employeeCollection.deleteOne({
-            _id: employeeId
-        });
-
-        if (result.deletedCount === 0) {
-            return res.status(404).json({
-                message: "Employee not found"
-            });
-        }
-
-        res.json({
-            message: "Employee removed successfully"
-        });
-
-    } catch (err) {
-
-        res.status(400).json({
-            message: "Invalid employee ID"
-        });
-    }
+    res.send("Student deleted successfully");
 });
 
-
-startServer();
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
+});

@@ -1,74 +1,87 @@
 const express = require("express");
-
 const app = express();
+app.use(express.json());
 
-let numbers = [10, 20, 30, 40, 50];
 
+let students = [
+    { id: 1, name: "Mayur", marks: 94 },
+    { id: 2, name: "Shree", marks: 88 },
+    { id: 3, name: "Anju", marks: 96 },
+    { id: 4, name : "Dipak", marks: 97}
+];
 
-app.get("/array", (req, res) => {
-    res.json(numbers);
+// Insert new
+app.post("/students", (req, res) => {
+    let student = {
+        id: students.length + 1,
+        name: req.body.name,
+        marks: req.body.marks
+    };
+    students.push(student);
+    res.send(student);
+});
+
+// Get all students
+
+app.get("/students", (req, res) => {
+    res.json(students);
+});
+
+// Find one student using id
+app.get("/students/:id", (req, res) => {
+    let id = Number(req.params.id);
+    let found = false;
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            res.json(students[i]);
+            found = true;
+        }
+    }
+    if (found == false) {
+        res.send("Student not found");
+    } else {
+        console.log("Student found");
+    }
+});
+
+// update user using id 
+
+app.put("/students/:id", (req, res) => {
+    let id = Number(req.params.id);
+    let found = false;
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            students[i].name = req.body.name;
+            students[i].marks = req.body.marks;
+            found = true;
+        }
+    }
+    if (found == true) {
+        res.send("Student updated successfully");
+    } else {
+        res.send("Student not found");
+    }
+});
+
+// Delete the student from array
+app.delete("/students/:id", (req, res) => {
+    let id = Number(req.params.id);
+    let found = false;
+    for (let i = 0; i < students.length; i++) {
+        if (students[i].id == id) {
+            students.splice(i, 1);
+            found = true;
+        }
+    }
+    if (found == true) {
+        res.send("Student deleted successfully");
+    } else {
+        res.send("Student not found");
+    }
 });
 
 
-app.get("/array/map", (req, res) => {
-    let result = numbers.map(num => num * 2);
-
-    res.json(result);
-});
-
-
-app.get("/array/filter", (req, res) => {
-    let result = numbers.filter(num => num > 25);
-
-    res.json(result);
-});
-
-// 4. reduce() - find sum
-app.get("/array/reduce", (req, res) => {
-    let sum = numbers.reduce((total, num) => total + num, 0);
-
-    res.json({ sum: sum });
-});
-
-
-app.get("/array/find", (req, res) => {
-    let result = numbers.find(num => num > 25);
-
-    res.json({ result: result });
-});
-
-
-app.get("/array/findIndex", (req, res) => {
-    let index = numbers.findIndex(num => num === 30);
-
-    res.json({ index: index });
-});
-
-app.get("/array/some", (req, res) => {
-    let result = numbers.some(num => num > 40);
-
-    res.json({ result: result });
-});
-
-
-app.get("/array/every", (req, res) => {
-    let result = numbers.every(num => num > 0);
-
-    res.json({ result: result });
-});
-
-app.get("/array/sort", (req, res) => {
-    let result = [...numbers].sort((a, b) => a - b);
-
-    res.json(result);
-});
-
-app.get("/array/reverse", (req, res) => {
-    let result = [...numbers].reverse();
-
-    res.json(result);
-});
 
 app.listen(3000, () => {
-    console.log("Server running on http://localhost:3000");
+    console.log("Server is running on port 3000");
 });
